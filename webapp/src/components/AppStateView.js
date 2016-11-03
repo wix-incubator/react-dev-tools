@@ -6,20 +6,21 @@ export default class AppStateView extends PureComponent {
   constructor() {
     super();
 
-    this.state = {
-      array: [1, 2, 3],
-      bool: true,
-      object: {
-        foo: 'bar'
-      }
-    };
+    this.onClick = this.onClick.bind(this); 
   }
 
   render() {
     return (
       <div className="AppStateView">
-        <JSONTree data={this.state} />
+        <JSONTree data={this.props.appState} />
+        <button onClick={this.onClick}>Update</button>
       </div>
     );
+  }
+
+  onClick() {
+    this.props.send({
+      type: 'request-state-update'
+    });
   }
 }

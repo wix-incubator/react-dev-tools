@@ -85,6 +85,22 @@ function Client(connection, clientId, broadcast) {
       return;
     }
 
+    if (message.type === 'request-state-update') {
+      self.send({
+        type: 'app-state',
+        payload: {
+          array: [1, 2, 4, 3],
+          bool: true,
+          object: {
+            foo: 'bar',
+            bar: 'baz'
+          }
+        }
+      });
+
+      return;
+    }
+
     broadcast(message);
 
     self.send({
