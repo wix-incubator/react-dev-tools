@@ -10,7 +10,7 @@ module.exports.run = function(worker) {
   var httpServer = worker.httpServer;
   var scServer = worker.scServer;
 
-  httpServer.on('request', express().use(process.env.MOUNT_POINT, mainApp));
+  httpServer.on('request', express().use('/', mainApp));
 
   mainApp.set('view engine', 'ejs');
   mainApp.set('views', path.resolve(__dirname, '..', 'views'));

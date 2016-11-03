@@ -3,9 +3,10 @@ const SocketCluster = require('socketcluster').SocketCluster,
   fetch = require('node-fetch');
 
 const argv = require('minimist')(process.argv.slice(2));
+const mountPoint = '/';
 
 express()
-  .get(process.env.MOUNT_POINT + '/health/deployment/test', (req, res, next) => {
+  .get(mountPoint, (req, res, next) => {
     fetch(`http://127.0.0.1:${process.env.PORT}${process.env.MOUNT_POINT}/health/is_alive`)
       .then(resp => resp.ok ? res.end() : res.status(500).end())
       .catch(next);
@@ -13,7 +14,7 @@ express()
   .listen(process.env.MANAGEMENT_PORT || parseInt(argv['management-port']), () => {
     new SocketCluster({
       port: process.env.PORT || parseInt(argv['port']) || 8080,
-      path: process.env.MOUNT_POINT || argv['context-path'] || '',
+      path: mountPoint, 
       appName: process.env.APP_NAME || 'dev',
       workers: 2,
       workerController: './lib/worker.js',
