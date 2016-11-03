@@ -27,10 +27,6 @@ export function start(options) {
 
 //TODO what if we aren't ready?
 export function send(msg) {
-  return;
-  if (!_.isString(msg)) {
-    ws.send(JSON.stringify(msg));
-  } else {
-    ws.send(msg);
-  }
+  const toSend = _.isString(msg) ? msg : JSON.stringify(msg);
+  ws.send(toSend);
 }

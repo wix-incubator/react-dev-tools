@@ -31,11 +31,13 @@ export default class ConsoleReporter extends Reporter {
 }
 
 function format(args) {
+  const message = generateMessage(args);
   const stacktrace = generateStacktrace();
-  return {
-    message: _.join(args, ', '),
-    stacktrace
-  };
+  return {message, stacktrace};
+}
+
+function generateMessage(args) {
+  return args ? args.join(', ') : 'undefined';
 }
 
 function generateStacktrace() {
