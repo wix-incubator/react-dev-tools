@@ -1,5 +1,4 @@
-const SocketCluster = require('socketcluster').SocketCluster,
-  express = require('express'),
+const express = require('express'),
   fetch = require('node-fetch'),
   ws = require('nodejs-websocket');
 
