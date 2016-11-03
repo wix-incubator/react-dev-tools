@@ -30,7 +30,8 @@ function Clients() {
     });
 
     client.send({
-      type: 'connected'
+      type: 'connected',
+      clientId
     });
   }
 
@@ -55,8 +56,8 @@ function Client(connection, clientId, broadcast) {
       handleMessage(messageText);
     } catch (e) {
       self.send({
-        'type': 'wtf?',
-        'message-type': 'Gimme JSON!'
+        type: 'error',
+        message: 'Gimme JSON!'
       });      
     }
   });
@@ -83,9 +84,9 @@ function Client(connection, clientId, broadcast) {
     broadcast(message);
 
     self.send({
-      'type': 'ack',
-      'clientId': clientId,
-      'message-type': message.type
+      type: 'ack',
+      clientId,
+      messageType: message.type
     });
   }
 };
