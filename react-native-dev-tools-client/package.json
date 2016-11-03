@@ -1,0 +1,28 @@
+{
+  "name": "react-native-dev-tools-client",
+  "version": "0.0.1",
+  "license": "MIT",
+  "nativePackage": true,
+  "description": "React Native Dev Tools",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wix/react-dev-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wix/react-dev-tools/issues"
+  },
+  "homepage": "https://github.com/wix/react-dev-tools",
+  "main": "index.js",
+  "author": "Daniel Zlotin <zlotindaniel@gmail.com>",
+  "peerDependencies": {
+    "react-native": ">=0.31.0"
+  },
+  "dependencies": {
+    "jsan": "^3.1.3",
+    "querystring": "^0.2.0",
+    "socketcluster-client": "^5.0.17"
+  }
+}
