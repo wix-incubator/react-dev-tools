@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "moment": "^2.15.2",
+    "react-addons-test-utils": "^15.3.2",
     "react-scripts": "0.7.0"
   },
   "dependencies": {

@@ -14,9 +14,25 @@ class App extends Component {
     this.state = {
       entries: [
         {type: 'console', subtype: 'log', time: Date.now(), payload: {message: 'Hello, World!'}},
-        {type: 'console', subtype: 'log', time: Date.now(), payload: {message: 'Something, something, something'}},
         {type: 'console', subtype: 'error', time: Date.now(), payload: {message: 'TypeError: all when wrong'}},
         {type: 'console', subtype: 'warn', time: Date.now(), payload: {message: 'Don\'t eat too many sweets'}},
+        {type: 'console', subtype: 'error', time: Date.now(), payload: {
+          message: 'WebSocket network error: The operation couldn’t be completed. Connection refused',
+          stacktrace: [
+            {
+              "file": "react-dev-tools/react-native-dev-tools-client/example/outer/src/reporters/stacktraceGenerator.js",
+              "methodName": "generate$",
+              "lineNumber": 5,
+              "column": 0
+            },
+            {
+              "file": "react-dev-tools/react-native-dev-tools-client/example/node_modules/regenerator-runtime/runtime.js",
+              "methodName": "tryCatch",
+              "lineNumber": 62,
+              "column": 0
+            }
+          ]
+        }}
       ]
     };
   }

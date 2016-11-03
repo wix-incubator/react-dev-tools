@@ -1,0 +1,21 @@
+.StackTrace {
+  padding: 1px;
+}
+
+.StackTrace ul {
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid #eee;
+}
+
+.StackTrace-expand, .StackTrace-collapse {
+  border-radius: 2px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 2px 1px;
+}
+
+.StackTrace-entry {
+  list-style: none;
+}

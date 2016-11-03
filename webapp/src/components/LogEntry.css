@@ -9,5 +9,5 @@
   color: gray;
 }
 .LogEntry-warn .LogEntry-message {
-  background: yellow;
+  color: darkorange;
 }
