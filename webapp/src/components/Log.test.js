@@ -13,4 +13,10 @@ describe('Log', function () {
     const elements = query(render(Log, {entries}), '.LogEntry-message').map(el => el.textContent);
     expect(elements).toEqual(['first!']);
   });
+
+  it('should render network entry', function () {
+    const entries = [{type: 'network', payload: {url: 'schema://smth/', method: 'ABC'}}];
+    const elements = query(render(Log, {entries}), '.LogEntry-message').map(el => el.textContent);
+    expect(elements).toEqual(['ABC schema://smth/']);
+  });
 });
