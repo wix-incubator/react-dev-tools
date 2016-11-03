@@ -7,6 +7,7 @@
   "scripts": {
     "build": ":",
     "test": "mocha --reporter mocha-env-reporter",
+    "start": "node index.js --port 3030 --management-port 3031 --context-path /",
     "release": "wnpm-release --no-shrinkwrap"
   },
   "repository": {
