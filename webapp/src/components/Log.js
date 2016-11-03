@@ -5,28 +5,31 @@ import LogEntry from './LogEntry';
 export default class Log extends PureComponent {
   render() {
     const entries = this.props.entries || [];
+
     return (
-      <ul className="Log">{entries.map(this.renderEntry)}</ul>
+      <ul className="Log">
+        {
+          entries.filter(isKnownType).map(this.renderEntry)
+        }
+      </ul>
     );
   }
 
   renderEntry(entry, i) {
-    if (typeof entry === 'string') {
-      entry = {
-        type: 'console',
-        subtype: 'log',
-        payload: {
-          message: entry
-        }
-      };
-    }
+    const payload = entry.payload || {};
     return (
       <li key={i} className="Log-entry">
         <LogEntry
           type={entry.subtype}
           time={entry.time}
-          message={entry.payload.message} />
+          message={payload.message} />
       </li>
     );
   }
+}
+
+function isKnownType(entry) {
+  return [
+    'console'
+  ].indexOf(entry && entry.type) > -1;
 }
