@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Log from './components/Log';
+import AppStateView from './components/AppStateView';
 import websocketClient from './services/websocket-client';
 
 let ws;
@@ -24,7 +25,7 @@ class App extends Component {
     ws = websocketClient.open('ws://localhost:3030/');
     ws.on('message', event => {
       this.setState({
-        entries: [...this.state.entries, event.data]
+        entries: [...this.state.entries, JSON.parse(event.data)]
       });
     });
   }
@@ -34,6 +35,7 @@ class App extends Component {
       <div className="App">
         <h1 className="App-header">React Dev Tools</h1>
         <Log entries={this.state.entries}/>
+        <AppStateView />
       </div>
     );
   }

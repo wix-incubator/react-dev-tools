@@ -19,3 +19,4 @@ describe('LogEntry', function () {
     expect(element.innerHTML).toContain('LogEntry-error');
   });
 });
+
