@@ -1,0 +1,13 @@
+.LogEntry-time {
+  padding-right: 8px;
+}
+
+.LogEntry-error .LogEntry-message {
+  color: red;
+}
+.LogEntry-log .LogEntry-message {
+  color: gray;
+}
+.LogEntry-warn .LogEntry-message {
+  background: yellow;
+}

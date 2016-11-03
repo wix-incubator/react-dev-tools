@@ -1,0 +1,15 @@
+.Log {
+}
+
+.Log {
+  margin: 0;
+  padding: 8px;
+}
+
+.Log-entry {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+  font-family: Menlo, Monaco, monospace;
+}

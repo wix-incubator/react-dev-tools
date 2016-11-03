@@ -4,7 +4,8 @@ export default {
     return {
       on: (eventType, handler) => {
         ws['on' + eventType] = handler;
-      }
+      },
+      send: data => ws.send(data)
     };
   }
 };
