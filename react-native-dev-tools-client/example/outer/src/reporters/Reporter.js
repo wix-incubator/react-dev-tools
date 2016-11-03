@@ -9,11 +9,11 @@ export default class Reporter {
     this.sendFn = sendFn;
   }
 
-  register() {
+  getType() {
     throw new Error('must implement');
   }
 
-  getType() {
+  register() {
     throw new Error('must implement');
   }
 

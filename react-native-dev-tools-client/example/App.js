@@ -1,11 +1,10 @@
-
-
 import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 
 export default class example extends Component {
@@ -19,9 +18,14 @@ export default class example extends Component {
         <Text style={styles.welcome}>
           React Native Dev Tools!
         </Text>
-        <Text style={styles.instructions} onPress={() => console.log('HEHEHE')}>
-          Gasparshudas blat!
+        <Text style={styles.instructions}>
+          go nuts
         </Text>
+        <TouchableOpacity onPress={() => console.log('this is a message from console.log')}>
+          <Text>
+            console log
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

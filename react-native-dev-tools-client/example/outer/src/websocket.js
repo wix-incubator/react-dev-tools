@@ -1,3 +1,4 @@
+import _ from 'lodash';
 let ws;
 
 export function start(options) {
@@ -8,23 +9,28 @@ export function start(options) {
   ws = new WebSocket(`${options.protocol}://${options.hostname}:${options.port}`); //eslint-disable-line
 
   ws.onopen = () => {
-    alert(`opened`);
+    //alert(`opened`);
   };
 
   ws.onmessage = (e) => {
-    alert(`received: ${e.data}`);
+    //alert(`received: ${e.data}`);
   };
 
   ws.onerror = (e) => {
-    alert(`error: ${e.message}`);
+    //alert(`error: ${e.message}`);
   };
 
   ws.onclose = (e) => {
-    alert(`closed: ${e.code}, ${e.reason}`);
+    //alert(`closed: ${e.code}, ${e.reason}`);
   };
 }
 
-export async function send(msg) {
-  //TODO what if we aren't ready?
-  ws.send(msg);
+//TODO what if we aren't ready?
+export function send(msg) {
+  return;
+  if (!_.isString(msg)) {
+    ws.send(JSON.stringify(msg));
+  } else {
+    ws.send(msg);
+  }
 }
