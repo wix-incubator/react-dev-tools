@@ -1,14 +1,23 @@
-import socketCluster from 'socketcluster-client';
+export async function start(options) {
+  const ws = new WebSocket(`${options.protocol}://${options.hostname}:${options.port}`); //eslint-disable-line
 
-export function connect(options) {
-  const socket = socketCluster.connect(options);
+  ws.onopen = () => {
+    ws.send('something');
+  };
 
-  socket.on('connect', () => {
-    alert('CONNECTED');
-  });
+  ws.onmessage = (e) => {
+    // a message was received
+    alert(e.data);
+  };
 
-  socket.on('rand', (num) => {
-    alert('RANDOM: ' + num);
-  });
+  ws.onerror = (e) => {
+    // an error occurred
+    alert(e.message);
+  };
+
+  ws.onclose = (e) => {
+    // connection closed
+    alert(e.code, e.reason);
+  };
+
 }
-
