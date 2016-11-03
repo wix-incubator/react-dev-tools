@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import Reporter from './Reporter';
+import * as stacktraceGenerator from './stacktraceGenerator';
 
 export default class ConsoleReporter extends Reporter {
   getType() {
@@ -15,31 +15,24 @@ export default class ConsoleReporter extends Reporter {
 
     console.error = (...args) => {
       error.apply(console, args);
-      this.report('error', format(args));
+      format(args).then((f) => this.report('error', f));
     };
 
     console.warn = (...args) => {
       warn.apply(console, args);
-      this.report('warn', format(args));
+      format(args).then((f) => this.report('warn', f));
     };
 
     console.log = (...args) => {
       log.apply(console, args);
-      this.report('log', format(args));
+      format(args).then((f) => this.report('log', f));
     };
   }
 }
 
-function format(args) {
-  const message = generateMessage(args);
-  const stacktrace = generateStacktrace();
+async function format(args) {
+  const message = args ? args.join(', ') : 'undefined';
+  const stacktrace = await stacktraceGenerator.generate();
   return {message, stacktrace};
 }
 
-function generateMessage(args) {
-  return args ? args.join(', ') : 'undefined';
-}
-
-function generateStacktrace() {
-  return new Error().stack;
-}

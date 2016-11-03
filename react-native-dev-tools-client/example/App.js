@@ -26,6 +26,16 @@ export default class example extends Component {
             console log
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('this is a warning from console.warn')}>
+          <Text>
+            console warn
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('this is an error from console.error')}>
+          <Text>
+            console error
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
