@@ -18,26 +18,44 @@ export default class example extends Component {
         <Text style={styles.welcome}>
           React Native Dev Tools!
         </Text>
-        <Text style={styles.instructions}>
-          go nuts
-        </Text>
-        <TouchableOpacity onPress={() => console.log('this is a message from console.log')}>
-          <Text>
+        <TouchableOpacity onPress={() => this.onClickConsoleLog()}>
+          <Text style={styles.instructions}>
             console log
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('this is a warning from console.warn')}>
-          <Text>
+        <TouchableOpacity onPress={() => this.onClickConsoleWarn()}>
+          <Text style={styles.instructions}>
             console warn
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('this is an error from console.error')}>
-          <Text>
+        <TouchableOpacity onPress={() => this.onClickConsoleError()}>
+          <Text style={styles.instructions}>
             console error
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.onClickHttpGet()}>
+          <Text style={styles.instructions}>
+            http get
           </Text>
         </TouchableOpacity>
       </View>
     );
+  }
+
+  onClickConsoleLog() {
+    console.log('this is a message from console.log');
+  }
+
+  onClickConsoleWarn() {
+    console.log('this is a warning from console.warn');
+  }
+
+  onClickConsoleError() {
+    console.log('this is an error from console.error');
+  }
+
+  onClickHttpGet() {
+    fetch('https://www.google.com');
   }
 }
 

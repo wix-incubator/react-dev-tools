@@ -11,11 +11,14 @@
 
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
+#import "NetworkInterceptor.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [NSURLProtocol registerClass:[NetworkInterceptor class]];
+  
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
@@ -35,3 +38,4 @@
 }
 
 @end
+

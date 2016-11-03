@@ -6,7 +6,7 @@ export function start(options) {
     ws.close();
   }
 
-  ws = new WebSocket(`${options.protocol}://${options.hostname}:${options.port}`); //eslint-disable-line
+  ws = new WebSocket(`${options.protocol}://${options.hostname || 'localhost'}:${options.port}`); //eslint-disable-line
 
   ws.onopen = () => {
     //alert(`opened`);
@@ -29,4 +29,5 @@ export function start(options) {
 export function send(msg) {
   const toSend = _.isString(msg) ? msg : JSON.stringify(msg);
   ws.send(toSend);
+  alert(toSend)
 }
