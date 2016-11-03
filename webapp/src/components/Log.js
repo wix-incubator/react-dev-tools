@@ -47,7 +47,7 @@ export default class Log extends PureComponent {
         return {
           subtype: entry.subtype,
           time: entry.time,
-          module: payload.module || 'app',
+          module: payload.module || 'App',
           message: payload.message,
           stacktrace: payload.stacktrace
         };
@@ -55,7 +55,7 @@ export default class Log extends PureComponent {
         return {
           subtype: entry.subtype,
           time: entry.time,
-          module: payload.module || 'network',
+          module: payload.module || 'Network',
           message: `${payload.method} ${payload.url}`
         };
       default:
