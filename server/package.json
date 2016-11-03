@@ -1,0 +1,37 @@
+{
+  "name": "wix-rnlog-server",
+  "version": "0.1.1",
+  "description": "Run the RemoteDev monitor on your local server.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": ":",
+    "test": "mocha --reporter mocha-env-reporter",
+    "release": "wnpm-release --no-shrinkwrap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wix-private/rnlog-server"
+  },
+  "publishConfig": {
+    "registry": "http://repo.dev.wix/artifactory/api/npm/npm-local/"
+  },
+  "author": "Mihail Diordiev <zalmoxisus@gmail.com> (https://github.com/zalmoxisus)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "minimist": "^1.2.0",
+    "node-fetch": "^1.6.3",
+    "socketcluster": "^4.8.1",
+    "wix-bootstrap-testkit": "^1.0.981"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "mocha-env-reporter": "^1.0.2",
+    "wnpm-ci": "^6.1.240"
+  }
+}
