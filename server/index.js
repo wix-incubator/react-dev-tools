@@ -6,17 +6,62 @@ const argv = require('minimist')(process.argv.slice(2));
 const mountPoint = '/';
 const port = process.env.PORT || parseInt(argv['port']) || 8080;
 
-ws.createServer(function (conn) {
-    console.log("New connection")
+const clients = new Clients();
 
-    conn.on("text", function (str) {
-        console.log("Received "+str)
-        conn.sendText(str.toUpperCase()+"!!!")
-    })
-    conn.on("close", function (code, reason) {
-        console.log("Connection closed")
-    })
-}).listen(port, '0.0.0.0')
+ws.createServer((conn) => clients.connected(conn))
+  .listen(port);
+
+function Clients() {
+  let nextClientId = 1;
+  const clients = {};
+
+  this.connected = (conn) => {
+    let clientId = `${nextClientId++}`;
+    let client = new Client(conn, clientId, sendEveryoneExcept.bind(clientId));
+    
+    clients[clientId] = client;
+
+    console.log(`Client connected ${clientId}`);
+  
+    conn.on('close', function (code, reason) {
+      delete clients[clientId];
+    });
+
+    client.send({
+      type: 'connected'
+    });
+  }
+
+  function sendEveryoneExcept(clientIdToExclude, message) {
+    for (let clientId in clients) {
+      if (clientId === clientIdToExclude) {
+        continue;
+      }
+
+      console.log(`Boardcasting ${message} to ${clientId}`);
+
+      clients[clientId].send(message);
+    }
+  };
+}
+
+function Client(connection, clientId, broadcast) {
+  connection.on('text', function (messageText) {
+    console.log(`Received ${messageText}`);
+
+    let message = JSON.parse(messageText);
+    
+    broadcast(message);
+  });
+
+  this.send = (message) => {
+    try {
+      connection.sendText(JSON.stringify(message));
+    } catch(e) {
+      console.error(`Failed sending message to ${clientId}`);
+    }
+  };
+};
 
 // express()
 //   .get(mountPoint, (req, res, next) => {
