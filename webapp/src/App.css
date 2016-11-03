@@ -15,3 +15,7 @@ h1 {
   padding: 12px;
   color: white;
 }
+
+.App-viewport {
+  width: 75%;
+}

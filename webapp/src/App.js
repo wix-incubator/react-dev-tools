@@ -49,8 +49,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1 className="App-header">React Dev Tools</h1>
-        <Log entries={this.state.entries}/>
+        <div className="App-viewport">
+          <h1 className="App-header">React Dev Tools</h1>
+          <Log entries={this.state.entries}/>
+        </div>
         <AppStateView />
       </div>
     );

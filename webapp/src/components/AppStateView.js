@@ -1,24 +1,26 @@
 import React, { PureComponent } from 'react';
 import JSONTree from 'react-json-tree';
+import _ from 'lodash';
+import './AppStateView.css';
 
 export default class AppStateView extends PureComponent {
-  render() {
-    const state = {
+  constructor() {
+    super();
+
+    this.state = {
       array: [1, 2, 3],
       bool: true,
       object: {
         foo: 'bar'
       }
     };
-
-    return (
-      <div>
-        <JSONTree data={state} shouldExpandNode={this.shouldExpandNode} />
-      </div>
-    );
   }
 
-  shouldExpandNode(keyName, data, level) {
-    return true;
+  render() {
+    return (
+      <div className="AppStateView">
+        <JSONTree data={this.state} />
+      </div>
+    );
   }
 }
