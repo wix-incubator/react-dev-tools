@@ -9,6 +9,20 @@ h1 {
 
 .App {}
 
+.App header {
+  margin: 0;
+  background-color: #222;
+  padding: 8px;
+  color: white;
+}
+
+.App header h1 {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
 .App-header {
   margin: 0;
   background-color: #222;

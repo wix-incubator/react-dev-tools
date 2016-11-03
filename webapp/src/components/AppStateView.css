@@ -8,3 +8,7 @@
     width: 25%;
     overflow: scroll;
 }
+
+.AppStateView ul {
+  margin: 0;
+}

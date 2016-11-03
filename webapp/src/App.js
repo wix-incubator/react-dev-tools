@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 
+// import Filter from './components/Filter';
 import Log from './components/Log';
 import AppStateView from './components/AppStateView';
 import websocketClient from './services/websocket-client';
@@ -69,7 +70,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-viewport">
-          <h1 className="App-header">React Dev Tools</h1>
+          <header>
+            <h1 className="App-header">Console and Network Log</h1>
+          </header>
           <Log entries={this.state.entries}/>
         </div>
         <AppStateView send={this.send} appState={this.state.appState} />

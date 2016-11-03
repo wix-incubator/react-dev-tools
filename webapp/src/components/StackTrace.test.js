@@ -34,4 +34,18 @@ describe('StackTrace', function () {
     expect(query(element, '.StackTrace li')[0].textContent)
       .toBe('some/path/to/js/file.js:4:10 generate()');
   });
+
+  it('should shorten filenames', function () {
+    const element = render(StackTrace, {
+      opened: true,
+      stacktrace: [
+        {file: 'some/node_modules/module/index.js'},
+        {file: 'some/src/index.js'}
+      ]
+    });
+    expect(query(element, '.StackTrace li').map(el => el.textContent)).toEqual([
+      'node_modules/module/index.js:: ()',
+      'src/index.js:: ()'
+    ]);
+  });
 });

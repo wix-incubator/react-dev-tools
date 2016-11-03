@@ -1,12 +1,17 @@
+.LogEntry {
+  line-height: 1.4;
+}
+
 .LogEntry-time {
   padding-right: 8px;
+  color: #aaa;
 }
 
 .LogEntry-error .LogEntry-message {
   color: red;
 }
 .LogEntry-log .LogEntry-message {
-  color: gray;
+  color: black;
 }
 .LogEntry-warn .LogEntry-message {
   color: darkorange;

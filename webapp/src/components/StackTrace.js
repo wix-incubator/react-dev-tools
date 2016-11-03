@@ -29,14 +29,19 @@ export default class StackTrace extends PureComponent {
   }
 
   renderEntries(entries) {
-    return (<ul>{entries.map(this.renderEntry)}</ul>);
+    let fileNameSkip = 0;
+    for (let i = 0 ; i < entries.length ; i++) {
+      fileNameSkip = entries[i].file.indexOf('/node_modules/');
+      if (fileNameSkip > -1) break;
+    }
+    return (<ul>{entries.map((entry, i) => this.renderEntry(fileNameSkip, entry, i))}</ul>);
   }
 
-  renderEntry(entry, i) {
+  renderEntry(skip, entry, i) {
     const {file, lineNumber, column, methodName} = entry;
     return (
       <li key={i} className='StackTrace-entry'>
-        {file}:{lineNumber}:{column} {methodName}()
+        {file.substr(skip + 1)}:{lineNumber}:{column} {methodName}()
       </li>
     );
   }
