@@ -1,8 +1,8 @@
-const config = require('./config');
-const websocket = require('./src/websocket');
+import * as config from './config';
+import * as websocket from './src/websocket';
+import * as reporters from './src/reporters';
 
-module.exports = {
-  start() {
-    websocket.start(config.socketOptions);
-  }
-};
+export function start() {
+  websocket.start(config.socketOptions);
+  reporters.register(websocket.send);
+}

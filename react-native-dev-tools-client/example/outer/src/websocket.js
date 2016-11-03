@@ -1,23 +1,30 @@
-export async function start(options) {
-  const ws = new WebSocket(`${options.protocol}://${options.hostname}:${options.port}`); //eslint-disable-line
+let ws;
+
+export function start(options) {
+  if (ws) {
+    ws.close();
+  }
+
+  ws = new WebSocket(`${options.protocol}://${options.hostname}:${options.port}`); //eslint-disable-line
 
   ws.onopen = () => {
-    ws.send('something');
+    alert(`received: ${e.data}`);
   };
 
   ws.onmessage = (e) => {
-    // a message was received
-    alert(e.data);
+    alert(`received: ${e.data}`);
   };
 
   ws.onerror = (e) => {
-    // an error occurred
-    alert(e.message);
+    alert(`error: ${e.message}`);
   };
 
   ws.onclose = (e) => {
-    // connection closed
-    alert(e.code, e.reason);
+    alert(`closed: ${e.code}, ${e.reason}`);
   };
+}
 
+export async function send(msg) {
+  //TODO what if we aren't ready?
+  ws.send(msg);
 }
