@@ -11,13 +11,17 @@ export default class Log extends PureComponent {
 
   render() {
     const entries = this.props.entries || [];
+    const onClear = this.props.onClear;
 
     return (
-      <ul className="Log">
-        {
-          entries.filter(isKnownType).map(this.renderEntry)
-        }
-      </ul>
+      <div>
+        <button className="Log-clear" onClick={onClear}>Clear</button>
+        <ul className="Log">
+          {
+            entries.filter(isKnownType).map(this.renderEntry)
+          }
+        </ul>
+      </div>
     );
   }
 

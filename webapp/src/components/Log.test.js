@@ -1,4 +1,5 @@
 import {render, query} from '../../test_utils';
+import {Simulate} from 'react-addons-test-utils';
 import Log from './Log';
 
 describe('Log', function () {
@@ -18,5 +19,13 @@ describe('Log', function () {
     const entries = [{type: 'network', payload: {url: 'schema://smth/', method: 'ABC'}}];
     const elements = query(render(Log, {entries}), '.LogEntry-message').map(el => el.textContent);
     expect(elements).toEqual(['ABC schema://smth/']);
+  });
+
+  it('should call given callback on clear', function () {
+    const entries = [];
+    const clearCallback = jest.fn();
+    const element = render(Log, {entries, onClear: clearCallback});
+    Simulate.click(query(element, '.Log-clear')[0]);
+    expect(clearCallback).toHaveBeenCalled();
   });
 });

@@ -69,13 +69,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-viewport">
+        <div className="App-viewport left">
           <header>
-            <h1 className="App-header">Console and Network Log</h1>
+            <h1>Console and Network Log</h1>
           </header>
-          <Log entries={this.state.entries}/>
+          <Log entries={this.state.entries} onClear={() => this.setState({entries: []})} />
         </div>
-        <AppStateView send={this.send} appState={this.state.appState} />
+        <div className="App-viewport right">
+          <header>
+            <h1>App State</h1>
+          </header>
+          <AppStateView send={this.send} appState={this.state.appState} />
+        </div>
       </div>
     );
   }

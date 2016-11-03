@@ -12,7 +12,6 @@ export default class AppStateView extends PureComponent {
   render() {
     return (
       <div className="AppStateView">
-        <h1 className="App-header">App State</h1>
         <JSONTree data={this.props.appState} theme={appStateTheme} isLightTheme={true} />
         <button onClick={this.onClick}>Update</button>
       </div>
