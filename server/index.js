@@ -17,13 +17,15 @@ function Clients() {
 
   this.connected = (conn) => {
     let clientId = `${nextClientId++}`;
-    let client = new Client(conn, clientId, sendEveryoneExcept.bind(clientId));
+    let client = new Client(conn, clientId, sendEveryoneExcept.bind(this, clientId));
     
     clients[clientId] = client;
 
     console.log(`Client connected ${clientId}`);
   
     conn.on('close', function (code, reason) {
+      console.log(`Client disconnected ${clientId}: ${code}; ${reason}`);
+
       delete clients[clientId];
     });
 
@@ -38,8 +40,6 @@ function Clients() {
         continue;
       }
 
-      console.log(`Boardcasting ${message} to ${clientId}`);
-
       clients[clientId].send(message);
     }
   };
@@ -47,18 +47,22 @@ function Clients() {
 
 function Client(connection, clientId, broadcast) {
   connection.on('text', function (messageText) {
-    console.log(`Received ${messageText}`);
+    console.log(`Received ${messageText} from ${clientId}`);
 
     let message = JSON.parse(messageText);
-    
+
     broadcast(message);
   });
 
   this.send = (message) => {
     try {
-      connection.sendText(JSON.stringify(message));
+      const messageText = JSON.stringify(message);
+
+      console.log(`Sending ${messageText} to ${clientId}`);
+
+      connection.sendText(messageText);
     } catch(e) {
-      console.error(`Failed sending message to ${clientId}`);
+      console.error(`Failed sending message to ${clientId}`, e);
     }
   };
 };
