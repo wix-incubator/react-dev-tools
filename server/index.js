@@ -11,6 +11,10 @@ const clients = new Clients();
 ws.createServer((conn) => clients.connected(conn))
   .listen(port);
 
+process.on('uncaughtException', (err) => {
+  console.error(err.stack);
+});
+
 function Clients() {
   let nextClientId = 1;
   const clients = {};
@@ -49,7 +53,7 @@ function Clients() {
 function Client(connection, clientId, broadcast) {
   const self = this;
 
-  connection.on('text', function (messageText) {
+  connection.on('text', (messageText) => {
     console.log(`Received ${messageText} from ${clientId}`);
 
     try {
