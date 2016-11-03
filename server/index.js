@@ -46,12 +46,19 @@ function Clients() {
 }
 
 function Client(connection, clientId, broadcast) {
+  const self = this;
+
   connection.on('text', function (messageText) {
     console.log(`Received ${messageText} from ${clientId}`);
 
-    let message = JSON.parse(messageText);
-
-    broadcast(message);
+    try {
+      handleMessage(messageText);
+    } catch (e) {
+      self.send({
+        'type': 'wtf?',
+        'message-type': 'Gimme JSON!'
+      });      
+    }
   });
 
   this.send = (message) => {
@@ -65,6 +72,22 @@ function Client(connection, clientId, broadcast) {
       console.error(`Failed sending message to ${clientId}`, e);
     }
   };
+
+  function handleMessage(messageText) {
+    let message = JSON.parse(messageText);
+
+    if (message.event === '#handshake') {
+      return;
+    }
+
+    broadcast(message);
+
+    self.send({
+      'type': 'ack',
+      'clientId': clientId,
+      'message-type': message.type
+    });
+  }
 };
 
 // express()
