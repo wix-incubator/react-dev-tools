@@ -9,7 +9,7 @@ export default class Log extends PureComponent {
     return (
       <ul className="Log">
         {
-          entries.filter(isKnownType).map(this.renderEntry)
+          entries/*.filter(isKnownType)*/.map(this.renderEntry)
         }
       </ul>
     );
@@ -28,8 +28,8 @@ export default class Log extends PureComponent {
   }
 }
 
-function isKnownType(entry) {
-  return [
-    'console'
-  ].indexOf(entry && entry.type) > -1;
-}
+// function isKnownType(entry) {
+//   return [
+//     'console'
+//   ].indexOf(entry && entry.type) > -1;
+// }
