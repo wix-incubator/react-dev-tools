@@ -7,14 +7,18 @@ import {
 } from 'react-native';
 
 export default class example extends Component {
+  componentDidMount() {
+    require('./outer').start();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          React Native Dev Tools!
         </Text>
         <Text style={styles.instructions}>
-          Let's win this shit
+          Gasparshudas blat!
         </Text>
       </View>
     );
