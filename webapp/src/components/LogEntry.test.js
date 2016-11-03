@@ -14,6 +14,13 @@ describe('LogEntry', function () {
     expect(query(element, '.LogEntry-time')[0].title).toBe(new Date(time).toString());
   });
 
+  it('should render module attribute', function () {
+    const module = 'module1';
+    const element = render(LogEntry, {module});
+    expect(query(element, '.LogEntry-module')[0].textContent)
+      .toBe(module);
+  });
+
   it('should render readable time', function () {
     const time = Date.now();
     const element = render(LogEntry, {time});

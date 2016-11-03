@@ -7,6 +7,11 @@
   color: #aaa;
 }
 
+.LogEntry-module {
+  padding-right: 8px;
+  color: #00f;
+}
+
 .LogEntry-error .LogEntry-message {
   color: red;
 }
