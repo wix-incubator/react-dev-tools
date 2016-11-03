@@ -1,6 +1,6 @@
-import {Reporter} from './Reporter';
+import Reporter from './Reporter';
 
-export class ConsoleReporter extends Reporter {
+export default class ConsoleReporter extends Reporter {
   getType() {
     return 'console';
   }

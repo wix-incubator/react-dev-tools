@@ -8,7 +8,7 @@ export function start(options) {
   ws = new WebSocket(`${options.protocol}://${options.hostname}:${options.port}`); //eslint-disable-line
 
   ws.onopen = () => {
-    alert(`received: ${e.data}`);
+    alert(`opened`);
   };
 
   ws.onmessage = (e) => {

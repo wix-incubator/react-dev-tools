@@ -1,3 +1,5 @@
+
+
 import React, {Component} from 'react';
 import {
   AppRegistry,
@@ -17,7 +19,7 @@ export default class example extends Component {
         <Text style={styles.welcome}>
           React Native Dev Tools!
         </Text>
-        <Text style={styles.instructions}>
+        <Text style={styles.instructions} onPress={() => console.log('HEHEHE')}>
           Gasparshudas blat!
         </Text>
       </View>

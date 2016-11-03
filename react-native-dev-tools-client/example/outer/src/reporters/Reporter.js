@@ -1,6 +1,6 @@
 import * as timestamp from './timestamp';
 
-export class Reporter {
+export default class Reporter {
   static create(sendFn) {
     return new this(sendFn);
   }
