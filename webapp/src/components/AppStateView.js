@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import JSONTree from 'react-json-tree';
-import _ from 'lodash';
 import './AppStateView.css';
 
 export default class AppStateView extends PureComponent {
