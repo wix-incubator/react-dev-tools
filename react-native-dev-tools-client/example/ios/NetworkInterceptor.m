@@ -7,7 +7,10 @@
 //
 
 #import "NetworkInterceptor.h"
+#import "AppDelegate.h"
 @import ObjectiveC;
+#import "RCTBridge.h"
+#import "RCTEventDispatcher.h"
 
 @interface NSURLSessionConfiguration (Swizzler)
 @end
@@ -31,7 +34,10 @@
 @implementation NetworkInterceptor
 
 +(BOOL)canInitWithRequest:(NSURLRequest *)request {
-  
+  [[AppDelegate instance].bridge.eventDispatcher sendAppEventWithName:@"NetworkInterceptor" body:@{
+                                                                                                   @"url": request.URL.absoluteString,
+                                                                                                   @"method": [request HTTPMethod]
+                                                                                                   }];
   return false;
 }
 

@@ -1,5 +1,7 @@
+import * as url from 'url';
 import _ from 'lodash';
 import Reporter from './Reporter';
+import {NativeAppEventEmitter} from 'react-native';
 
 export default class NetworkReporter extends Reporter {
   getType() {
@@ -7,12 +9,12 @@ export default class NetworkReporter extends Reporter {
   }
 
   register() {
-    this.requests = [];
-    //const original = global.fetch;
-    //global.fetch = (...args) => {
-    //  original.apply(this, args);
-    //  this.report('fetch', args);
-    //};
+    NativeAppEventEmitter.addListener('NetworkInterceptor', (req) => {
+      if (_.isEqual(url.parse(req.url).hostname, 'localhost')) {
+        return;
+      }
+      this.report(`from-native`, {url: req.url, method: req.method});
+    });
   }
 
 }

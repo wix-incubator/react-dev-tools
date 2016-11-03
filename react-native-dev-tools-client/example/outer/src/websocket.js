@@ -29,5 +29,4 @@ export function start(options) {
 export function send(msg) {
   const toSend = _.isString(msg) ? msg : JSON.stringify(msg);
   ws.send(toSend);
-  alert(toSend)
 }
